@@ -14,6 +14,13 @@ See [GAMEPLAN.md](GAMEPLAN.md) for the design spec, code map, dev phases and rel
 ./gradlew build         # jar in build/libs
 ```
 
+## AI disclosure
+
+This mod was built with substantial help from an AI coding assistant (Claude, by Anthropic).
+**Dawnforger** designed the mechanics, tiers and progression, made the balance, recipe and naming decisions,
+and playtested everything in game. The AI wrote most of the code, data files, tooling and this description
+under that direction. The project logo was also made with AI tools.
+
 ## Credits & licensing
 
 - Built on [Create](https://github.com/Creators-of-Create/Create) by the Create Team. Some classes are adapted

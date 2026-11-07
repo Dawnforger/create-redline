@@ -95,24 +95,39 @@ neoForge.ideSyncTask generateModMetadata
 
 tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
 
-// Release to CurseForge + Modrinth: `./gradlew publishMods` (tokens from env vars, see GAMEPLAN.md)
+// Release to CurseForge / Modrinth: `./gradlew publishMods`, run by .github/workflows/release.yml on a v* tag.
+// Each platform is enabled only when its project id is set, so CurseForge can go live before Modrinth.
+// Without any token it's a dry run, which validates the config and uploads nothing.
+// GitHub Actions passes unset variables/secrets as empty strings, so treat empty as absent.
+def env = { String name -> providers.environmentVariable(name).filter { !it.isBlank() } }
+def cfProject = env('CURSEFORGE_PROJECT_ID')
+def mrProject = env('MODRINTH_PROJECT_ID')
+
 publishMods {
     file = jar.archiveFile
+    displayName = "${mod_name} ${mod_version}"
+    version = mod_version
     changelog = providers.fileContents(layout.projectDirectory.file('CHANGELOG.md')).asText.orElse('')
     type = STABLE
     modLoaders.add 'neoforge'
-    dryRun = providers.environmentVariable('CURSEFORGE_TOKEN').getOrNull() == null
+    dryRun = env('CURSEFORGE_TOKEN').orElse(env('MODRINTH_TOKEN')).map { false }.orElse(true)
 
-    curseforge {
-        projectId = 'REPLACE_ME'
-        accessToken = providers.environmentVariable('CURSEFORGE_TOKEN')
-        minecraftVersions.add minecraft_version
-        requires 'create', 'allthemodium'
+    if (cfProject.isPresent() || !providers.environmentVariable('CI').isPresent()) {
+        curseforge {
+            projectId = cfProject.orElse('000000')
+            accessToken = env('CURSEFORGE_TOKEN')
+            minecraftVersions.add minecraft_version
+            javaVersions.add JavaVersion.VERSION_21
+            requires 'create'
+            optional 'allthemodium' // recipes are gated on it; the mod loads without it
+        }
     }
-    modrinth {
-        projectId = 'REPLACE_ME'
-        accessToken = providers.environmentVariable('MODRINTH_TOKEN')
-        minecraftVersions.add minecraft_version
-        requires 'create'
+    if (mrProject.isPresent()) {
+        modrinth {
+            projectId = mrProject
+            accessToken = env('MODRINTH_TOKEN')
+            minecraftVersions.add minecraft_version
+            requires 'create'
+        }
     }
 }

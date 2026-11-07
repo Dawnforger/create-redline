@@ -7,7 +7,7 @@ modId="${mod_id}"
 version="${mod_version}"
 displayName="${mod_name}"
 authors="${mod_authors}"
-credits="Built on Create by the Create Team (parts of the code adapted under MIT). Allthemodium materials by the All The Mods team."
+credits="Built on Create by the Create Team (parts of the code adapted under MIT). Allthemodium materials by the All The Mods team. Developed with AI assistance (Claude by Anthropic) under Dawnforger's design and testing."
 description='''${mod_description}'''
 
 [[mixins]]
