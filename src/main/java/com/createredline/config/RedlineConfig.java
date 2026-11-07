@@ -1,5 +1,6 @@
 package com.createredline.config;
 
+import com.createredline.content.turbine.SteamRedlinerBlockEntity;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -30,8 +31,6 @@ public final class RedlineConfig {
         public final ModConfigSpec.IntValue tierMultiplier;
         public final ModConfigSpec.BooleanValue strictAttachment;
 
-        public final ModConfigSpec.IntValue turbineBaselineEngines;
-        public final ModConfigSpec.IntValue steamEngineReferenceSU;
         public final ModConfigSpec.DoubleValue turbineMultiplier;
         public final ModConfigSpec.IntValue turbineOutputRpm;
         public final ModConfigSpec.IntValue turbineWaterPerTick;
@@ -58,15 +57,10 @@ public final class RedlineConfig {
             b.pop();
 
             b.push("steamRedliner");
-            turbineBaselineEngines = b
-                    .comment("How many steam engines the 3x3x3 / 9-burner boiler is considered to replace.")
-                    .defineInRange("baselineEngines", 9, 1, 64);
-            steamEngineReferenceSU = b
-                    .comment("SU one Create steam engine provides at the boiler level this build would reach.",
-                            "VERIFY against your Create version/config with goggles on a real 9-engine build.")
-                    .defineInRange("steamEngineReferenceSU", 16384, 1, Integer.MAX_VALUE);
             turbineMultiplier = b
-                    .comment("Steam Redliner capacity = baselineEngines * steamEngineReferenceSU * this.")
+                    .comment("Steam Redliner capacity = this * what steam engines on the same 3x3x3 boiler produce.",
+                            "That baseline is computed from Create's own boiler rules and steam engine config",
+                            "(98,304 SU with default Create settings), so it follows any changes a pack makes there.")
                     .defineInRange("multiplier", 4.0, 0.1, 64.0);
             turbineOutputRpm = b
                     .comment("Output speed of a Steam Redliner with a plain (untiered) rotor. Tiered rotors output at the first",
@@ -79,7 +73,7 @@ public final class RedlineConfig {
         }
 
         public long turbineCapacitySU() {
-            return (long) (turbineBaselineEngines.get() * (long) steamEngineReferenceSU.get() * turbineMultiplier.get());
+            return (long) (SteamRedlinerBlockEntity.steamEngineBaselineSU() * turbineMultiplier.get());
         }
     }
 

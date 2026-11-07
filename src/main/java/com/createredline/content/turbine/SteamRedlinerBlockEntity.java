@@ -1,7 +1,9 @@
 package com.createredline.content.turbine;
 
 import com.createredline.config.RedlineConfig;
+import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllSoundEvents;
+import com.simibubi.create.api.stress.BlockStressValues;
 import net.createmod.catnip.math.VecHelper;
 import net.createmod.ponder.api.level.PonderLevel;
 import com.simibubi.create.content.fluids.tank.FluidTankBlockEntity;
@@ -151,6 +153,17 @@ public class SteamRedlinerBlockEntity extends GeneratingKineticBlockEntity {
     /** Set by the rotor (crafting cog): higher tiers spin faster for the same total stress capacity. */
     public int outputRpm() {
         return getBlockState().getValue(SteamRedlinerBlock.ROTOR).turbineRpm();
+    }
+
+    /**
+     * What steam engines on the same boiler would produce, mirroring Create's BoilerData/PoweredShaftBlockEntity:
+     * the boiler level is min(heat, water, size); 9 seething burners give 18 heat, but a 3x3x3 tank caps it at
+     * 27 / 4 = 6. Each level of engines yields 16 RPM worth of the steam engine's capacity (1,024 by default),
+     * however many engines share it, so 9 engines give 6 * 16 * 1024 = 98,304 SU.
+     */
+    public static double steamEngineBaselineSU() {
+        int boilerLevel = Math.min(18, (3 * 3 * 3) / 4);
+        return boilerLevel * 16 * BlockStressValues.getCapacity(AllBlocks.STEAM_ENGINE.get());
     }
 
     public Status getStatus() {

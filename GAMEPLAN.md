@@ -76,9 +76,14 @@ Each tier has: **Shaft, Cogwheel, Large Cogwheel, Gearbox**.
   3. **no steam engines** are attached to the same boiler, and it's the **only turbine** on that tank. Placement
      refuses a second turbine with an action-bar message; a runtime check covers tanks merged afterwards;
   4. it can drain its water budget (default 200 mB/t).
-- Output is a flat **`baselineEngines(9) × steamEngineReferenceSU × multiplier(4)`** SU (589,824 by default,
-  confirmed in game) **at the same SU for every rotor**. Only the speed changes. A rotor outputs at the first speed
-  step its crafting cog is needed for: one doubling past the previous tier's cap (`KineticTier.turbineRpm`).
+- Output is **4× what steam engines on the same boiler produce**, computed from Create's own rules
+  (`SteamRedlinerBlockEntity.steamEngineBaselineSU`). A 3×3×3 tank caps the boiler at level 6 (27 / 4),
+  even though 9 seething burners give 18 heat. 9 engines therefore share 6 levels: 6 × 16 RPM × 1,024
+  (the steam engine capacity) = **98,304 SU**, so the Redliner provides **393,216 SU** with default Create
+  settings. It reads Create's steam engine capacity from its stress config, so a pack that rebalances steam
+  engines automatically keeps the Redliner at 4×. The `multiplier` config (4.0) is the only knob. The SU is the
+  same for every rotor; only the speed changes. A rotor outputs at the first speed step its crafting cog
+  is needed for: one doubling past the previous tier's cap (`KineticTier.turbineRpm`).
   | Rotor | Output RPM |
   |---|---|
   | plain (untiered, `/give`) | 256 (`steamRedliner.outputRpm` config) |
@@ -87,8 +92,6 @@ Each tier has: **Shaft, Cogwheel, Large Cogwheel, Gearbox**.
   | Unobtainium | 8,192 |
   The core counts as a part of its rotor's tier (`ITieredKinetic.getTier(state)`), so the output shaft must be
   that tier or stronger.
-- `steamEngineReferenceSU` defaults to 16,384. **Check this in game:** build the equivalent 9-engine boiler,
-  read the capacity with goggles, divide by 9, and set the default to that.
 - Goggles show why a turbine isn't running (wrong size, misaligned, burners not superheated, no water, engines attached).
 - Recipe: **8 Steam Engines around a tiered large cogwheel** (Allthemodium, Vibranium or Unobtainium). Every
   version yields the same item; the cog sets the **rotor blade colour and output speed**, which are stored as the
@@ -203,7 +206,7 @@ and the attachment rule. Original notes, kept for reference:
 
 ### Phase 4: Balance pass with the pack
 - Run inside an actual ATM10 instance (Prism Launcher → import ATM10 → drop your jar into `mods/`).
-- Tune `steamEngineReferenceSU`, water use, and recipe costs. Watch tick time at 16k RPM with
+- Tune the Redliner `multiplier`, water use, and recipe costs. Watch tick time at 16k RPM with
   Spark (`/spark profiler`). Rotation propagation cost doesn't depend on RPM, but contraptions and
   processing at those speeds might.
 

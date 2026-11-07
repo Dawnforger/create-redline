@@ -231,6 +231,20 @@ public class RedlineGameTests {
         return core;
     }
 
+    @GameTest(template = "empty", timeoutTicks = 200)
+    public static void redlinerGivesFourTimesSteamEngines(GameTestHelper helper) {
+        // 9 steam engines on a 3x3x3 boiler: level 6 (size-capped) * 16 rpm * 1024 = 98,304 SU; Redliner = 4x.
+        helper.assertTrue(SteamRedlinerBlockEntity.steamEngineBaselineSU() == 98_304,
+                "steam engine baseline should be 98,304 SU, got " + SteamRedlinerBlockEntity.steamEngineBaselineSU());
+        BlockPos core = buildRunningTurbine(helper, KineticTier.VIBRANIUM);
+        helper.succeedWhen(() -> {
+            var be = (SteamRedlinerBlockEntity) helper.getBlockEntity(core);
+            helper.assertTrue(be.getStatus() == SteamRedlinerBlockEntity.Status.RUNNING, "Redliner should run");
+            double su = be.calculateAddedStressCapacity() * Math.abs(be.getGeneratedSpeed());
+            helper.assertTrue(Math.abs(su - 393_216) < 1, "Redliner should provide 393,216 SU, got " + su);
+        });
+    }
+
     @GameTest(template = "empty", timeoutTicks = 300)
     public static void beltOnTurbineFedShaft(GameTestHelper helper) {
         // The in-game report: belt from a turbine-driven Unobtainium shaft to a loose, stationary one.
