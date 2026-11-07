@@ -118,6 +118,8 @@ publishMods {
             accessToken = env('CURSEFORGE_TOKEN')
             minecraftVersions.add minecraft_version
             javaVersions.add JavaVersion.VERSION_21
+            clientRequired = true // blocks, renderers and Ponder: needed on both sides
+            serverRequired = true
             requires 'create'
             optional 'allthemodium' // recipes are gated on it; the mod loads without it
         }
