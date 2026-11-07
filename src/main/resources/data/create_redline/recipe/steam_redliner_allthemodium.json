@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "EEE",
+    "ECE",
+    "EEE"
+  ],
+  "key": {
+    "E": {
+      "item": "create:steam_engine"
+    },
+    "C": {
+      "item": "create_redline:allthemodium_large_cogwheel"
+    }
+  },
+  "result": {
+    "id": "create_redline:steam_redliner",
+    "count": 1,
+    "components": {
+      "create_redline:rotor_tier": "allthemodium"
+    }
+  }
+}

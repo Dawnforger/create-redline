@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "allthemodium"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "create_redline:vibranium_cogwheel"
+    },
+    {
+      "item": "create_redline:unobtainium_shaft"
+    },
+    {
+      "tag": "c:plates/unobtainium"
+    }
+  ],
+  "result": {
+    "id": "create_redline:unobtainium_cogwheel",
+    "count": 1
+  }
+}

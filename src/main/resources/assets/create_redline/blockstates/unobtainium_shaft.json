@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "create_redline:block/unobtainium_shaft",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "create_redline:block/unobtainium_shaft"
+    },
+    "axis=z": {
+      "model": "create_redline:block/unobtainium_shaft",
+      "x": 90
+    }
+  }
+}

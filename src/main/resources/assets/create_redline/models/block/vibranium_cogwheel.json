@@ -1,0 +1,9 @@
+{
+  "parent": "create:block/cogwheel",
+  "textures": {
+    "0": "create:block/cogwheel_axis_vibranium",
+    "3": "create:block/axis_top_vibranium",
+    "1_2": "create:block/cogwheel_vibranium",
+    "particle": "create:block/cogwheel_vibranium"
+  }
+}

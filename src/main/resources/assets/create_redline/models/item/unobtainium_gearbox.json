@@ -1,0 +1,10 @@
+{
+  "parent": "create:block/gearbox/item",
+  "textures": {
+    "0": "create:block/andesite_casing_unobtainium",
+    "1": "create:block/gearbox_unobtainium",
+    "particle": "create:block/andesite_casing_unobtainium",
+    "1_0": "create:block/axis_unobtainium",
+    "1_1": "create:block/axis_top_unobtainium"
+  }
+}

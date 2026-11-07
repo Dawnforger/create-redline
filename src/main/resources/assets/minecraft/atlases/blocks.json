@@ -1,0 +1,112 @@
+{
+  "sources": [
+    {
+      "type": "paletted_permutations",
+      "textures": [
+        "create:block/cogwheel"
+      ],
+      "palette_key": "create_redline:palettes/cogwheel/key",
+      "permutations": {
+        "allthemodium": "create_redline:palettes/cogwheel/allthemodium",
+        "vibranium": "create_redline:palettes/cogwheel/vibranium",
+        "unobtainium": "create_redline:palettes/cogwheel/unobtainium"
+      }
+    },
+    {
+      "type": "paletted_permutations",
+      "textures": [
+        "create:block/large_cogwheel"
+      ],
+      "palette_key": "create_redline:palettes/large_cogwheel/key",
+      "permutations": {
+        "allthemodium": "create_redline:palettes/large_cogwheel/allthemodium",
+        "vibranium": "create_redline:palettes/large_cogwheel/vibranium",
+        "unobtainium": "create_redline:palettes/large_cogwheel/unobtainium"
+      }
+    },
+    {
+      "type": "paletted_permutations",
+      "textures": [
+        "create:block/gearbox"
+      ],
+      "palette_key": "create_redline:palettes/gearbox/key",
+      "permutations": {
+        "allthemodium": "create_redline:palettes/gearbox/allthemodium",
+        "vibranium": "create_redline:palettes/gearbox/vibranium",
+        "unobtainium": "create_redline:palettes/gearbox/unobtainium"
+      }
+    },
+    {
+      "type": "paletted_permutations",
+      "textures": [
+        "create:block/cogwheel_axis"
+      ],
+      "palette_key": "create_redline:palettes/cogwheel_axis/key",
+      "permutations": {
+        "allthemodium": "create_redline:palettes/cogwheel_axis/allthemodium",
+        "vibranium": "create_redline:palettes/cogwheel_axis/vibranium",
+        "unobtainium": "create_redline:palettes/cogwheel_axis/unobtainium"
+      }
+    },
+    {
+      "type": "paletted_permutations",
+      "textures": [
+        "create:block/axis"
+      ],
+      "palette_key": "create_redline:palettes/axis/key",
+      "permutations": {
+        "allthemodium": "create_redline:palettes/axis/allthemodium",
+        "vibranium": "create_redline:palettes/axis/vibranium",
+        "unobtainium": "create_redline:palettes/axis/unobtainium"
+      }
+    },
+    {
+      "type": "paletted_permutations",
+      "textures": [
+        "create:block/axis_top"
+      ],
+      "palette_key": "create_redline:palettes/axis_top/key",
+      "permutations": {
+        "allthemodium": "create_redline:palettes/axis_top/allthemodium",
+        "vibranium": "create_redline:palettes/axis_top/vibranium",
+        "unobtainium": "create_redline:palettes/axis_top/unobtainium"
+      }
+    },
+    {
+      "type": "paletted_permutations",
+      "textures": [
+        "create:block/andesite_casing"
+      ],
+      "palette_key": "create_redline:palettes/andesite_casing/key",
+      "permutations": {
+        "allthemodium": "create_redline:palettes/andesite_casing/allthemodium",
+        "vibranium": "create_redline:palettes/andesite_casing/vibranium",
+        "unobtainium": "create_redline:palettes/andesite_casing/unobtainium"
+      }
+    },
+    {
+      "type": "paletted_permutations",
+      "textures": [
+        "create:block/industrial_iron_block"
+      ],
+      "palette_key": "create_redline:palettes/industrial_iron_block/key",
+      "permutations": {
+        "allthemodium": "create_redline:palettes/industrial_iron_block/allthemodium",
+        "vibranium": "create_redline:palettes/industrial_iron_block/vibranium",
+        "unobtainium": "create_redline:palettes/industrial_iron_block/unobtainium"
+      }
+    },
+    {
+      "type": "paletted_permutations",
+      "textures": [
+        "create:item/iron_sheet"
+      ],
+      "palette_key": "create_redline:palettes/iron_sheet/key",
+      "permutations": {
+        "allthemodium": "create_redline:palettes/iron_sheet/allthemodium",
+        "vibranium": "create_redline:palettes/iron_sheet/vibranium",
+        "unobtainium": "create_redline:palettes/iron_sheet/unobtainium"
+      }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "values": [
+    "create_redline:allthemodium_shaft",
+    "create_redline:allthemodium_cogwheel",
+    "create_redline:allthemodium_large_cogwheel",
+    "create_redline:allthemodium_gearbox",
+    "create_redline:vibranium_shaft",
+    "create_redline:vibranium_cogwheel",
+    "create_redline:vibranium_large_cogwheel",
+    "create_redline:vibranium_gearbox",
+    "create_redline:unobtainium_shaft",
+    "create_redline:unobtainium_cogwheel",
+    "create_redline:unobtainium_large_cogwheel",
+    "create_redline:unobtainium_gearbox",
+    "create_redline:steam_redliner",
+    "create_redline:steam_redliner_structure"
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "components": {
+                "create_redline:rotor_tier": "allthemodium"
+              },
+              "conditions": [
+                {
+                  "block": "create_redline:steam_redliner",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "rotor": "allthemodium"
+                  }
+                }
+              ],
+              "function": "minecraft:set_components"
+            },
+            {
+              "components": {
+                "create_redline:rotor_tier": "vibranium"
+              },
+              "conditions": [
+                {
+                  "block": "create_redline:steam_redliner",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "rotor": "vibranium"
+                  }
+                }
+              ],
+              "function": "minecraft:set_components"
+            },
+            {
+              "components": {
+                "create_redline:rotor_tier": "unobtainium"
+              },
+              "conditions": [
+                {
+                  "block": "create_redline:steam_redliner",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "rotor": "unobtainium"
+                  }
+                }
+              ],
+              "function": "minecraft:set_components"
+            }
+          ],
+          "name": "create_redline:steam_redliner"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "create_redline:blocks/steam_redliner"
+}

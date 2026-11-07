@@ -1,0 +1,16 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "create_redline:vibranium_shaft"
+    },
+    {
+      "tag": "c:plates/unobtainium"
+    }
+  ],
+  "results": [
+    {
+      "id": "create_redline:unobtainium_shaft"
+    }
+  ]
+}

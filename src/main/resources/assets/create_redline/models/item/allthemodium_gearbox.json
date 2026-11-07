@@ -1,0 +1,10 @@
+{
+  "parent": "create:block/gearbox/item",
+  "textures": {
+    "0": "create:block/andesite_casing_allthemodium",
+    "1": "create:block/gearbox_allthemodium",
+    "particle": "create:block/andesite_casing_allthemodium",
+    "1_0": "create:block/axis_allthemodium",
+    "1_1": "create:block/axis_top_allthemodium"
+  }
+}

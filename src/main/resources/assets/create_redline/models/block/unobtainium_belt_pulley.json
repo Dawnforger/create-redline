@@ -1,0 +1,10 @@
+{
+  "parent": "create:block/belt_pulley",
+  "textures": {
+    "0": "create:block/axis_unobtainium",
+    "1": "create:block/axis_top_unobtainium",
+    "2": "create:block/industrial_iron_block_unobtainium",
+    "3": "create:block/industrial_iron_block_unobtainium",
+    "particle": "create:block/axis_unobtainium"
+  }
+}

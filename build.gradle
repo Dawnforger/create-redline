@@ -1,0 +1,118 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'net.neoforged.moddev' version '2.0.148'
+    id 'me.modmuss50.mod-publish-plugin' version '0.8.4'
+}
+
+version = mod_version
+group = mod_group_id
+base { archivesName = mod_id }
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+repositories {
+    maven { url = 'https://maven.createmod.net' }          // Create, Ponder, Flywheel
+    maven { url = 'https://mvn.devos.one/snapshots' }      // Registrate
+    maven { url = 'https://maven.blamejared.com' }         // JEI
+    maven {
+        url = 'https://cursemaven.com'
+        content { includeGroup 'curse.maven' }
+    }
+}
+
+neoForge {
+    version = project.neo_version
+
+    parchment {
+        mappingsVersion = project.parchment_mappings_version
+        minecraftVersion = project.parchment_minecraft_version
+    }
+
+    runs {
+        client {
+            client()
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+        server {
+            server()
+            programArgument '--nogui'
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+        gameTestServer {
+            type = 'gameTestServer'
+            // Own folder so test runs don't rotate the dev client's logs in run/
+            gameDirectory = project.file('run-gametest')
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+            // ./gradlew runGameTestServer -PexportPonder=true  -> run-gametest/ponder_export/steam_redliner.nbt
+            systemProperty 'redline.exportPonder', providers.gradleProperty('exportPonder').getOrElse('false')
+        }
+        data {
+            data()
+            programArguments.addAll '--mod', project.mod_id, '--all',
+                    '--output', file('src/generated/resources/').getAbsolutePath(),
+                    '--existing', file('src/main/resources/').getAbsolutePath()
+        }
+        configureEach {
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+            logLevel = org.slf4j.event.Level.DEBUG
+        }
+    }
+
+    mods {
+        "${mod_id}" { sourceSet(sourceSets.main) }
+    }
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+dependencies {
+    implementation("com.simibubi.create:create-${minecraft_version}:${create_version}") { transitive = false }
+    implementation "net.createmod.ponder:ponder-neoforge:${ponder_version}"
+    compileOnly "dev.engine-room.flywheel:flywheel-neoforge-api-${minecraft_version}:${flywheel_version}"
+    runtimeOnly "dev.engine-room.flywheel:flywheel-neoforge-${minecraft_version}:${flywheel_version}"
+    implementation "com.tterrag.registrate:Registrate:${registrate_version}"
+
+    // Allthemodium in the dev client so the ingots/recipes exist while testing.
+    // runtimeOnly "curse.maven:allthemodium-364466:${allthemodium_curse_file_id}"
+}
+
+var generateModMetadata = tasks.register('generateModMetadata', ProcessResources) {
+    var replaceProperties = [
+            minecraft_version      : minecraft_version, minecraft_version_range: minecraft_version_range,
+            neo_version            : neo_version, neo_version_range: neo_version_range,
+            create_version_range   : create_version_range,
+            mod_id                 : mod_id, mod_name: mod_name, mod_license: mod_license,
+            mod_version            : mod_version, mod_authors: mod_authors, mod_description: mod_description
+    ]
+    inputs.properties replaceProperties
+    expand replaceProperties
+    from 'src/main/templates'
+    into 'build/generated/sources/modMetadata'
+}
+sourceSets.main.resources.srcDir generateModMetadata
+neoForge.ideSyncTask generateModMetadata
+
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+
+// Release to CurseForge + Modrinth: `./gradlew publishMods` (tokens from env vars, see GAMEPLAN.md)
+publishMods {
+    file = jar.archiveFile
+    changelog = providers.fileContents(layout.projectDirectory.file('CHANGELOG.md')).asText.orElse('')
+    type = STABLE
+    modLoaders.add 'neoforge'
+    dryRun = providers.environmentVariable('CURSEFORGE_TOKEN').getOrNull() == null
+
+    curseforge {
+        projectId = 'REPLACE_ME'
+        accessToken = providers.environmentVariable('CURSEFORGE_TOKEN')
+        minecraftVersions.add minecraft_version
+        requires 'create', 'allthemodium'
+    }
+    modrinth {
+        projectId = 'REPLACE_ME'
+        accessToken = providers.environmentVariable('MODRINTH_TOKEN')
+        minecraftVersions.add minecraft_version
+        requires 'create'
+    }
+}

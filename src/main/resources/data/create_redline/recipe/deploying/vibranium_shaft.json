@@ -1,0 +1,16 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "create_redline:allthemodium_shaft"
+    },
+    {
+      "tag": "c:plates/vibranium"
+    }
+  ],
+  "results": [
+    {
+      "id": "create_redline:vibranium_shaft"
+    }
+  ]
+}

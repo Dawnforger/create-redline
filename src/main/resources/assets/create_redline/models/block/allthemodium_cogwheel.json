@@ -1,0 +1,9 @@
+{
+  "parent": "create:block/cogwheel",
+  "textures": {
+    "0": "create:block/cogwheel_axis_allthemodium",
+    "3": "create:block/axis_top_allthemodium",
+    "1_2": "create:block/cogwheel_allthemodium",
+    "particle": "create:block/cogwheel_allthemodium"
+  }
+}

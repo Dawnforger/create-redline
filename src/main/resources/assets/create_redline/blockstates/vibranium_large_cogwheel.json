@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "create_redline:block/vibranium_large_cogwheel",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "create_redline:block/vibranium_large_cogwheel"
+    },
+    "axis=z": {
+      "model": "create_redline:block/vibranium_large_cogwheel",
+      "x": 90
+    }
+  }
+}

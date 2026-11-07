@@ -1,0 +1,8 @@
+{
+  "parent": "create:block/shaft",
+  "textures": {
+    "0": "create:block/axis_unobtainium",
+    "1": "create:block/axis_top_unobtainium",
+    "particle": "create:block/axis_unobtainium"
+  }
+}

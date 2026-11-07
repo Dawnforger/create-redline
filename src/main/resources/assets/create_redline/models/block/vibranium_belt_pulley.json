@@ -1,0 +1,10 @@
+{
+  "parent": "create:block/belt_pulley",
+  "textures": {
+    "0": "create:block/axis_vibranium",
+    "1": "create:block/axis_top_vibranium",
+    "2": "create:block/industrial_iron_block_vibranium",
+    "3": "create:block/industrial_iron_block_vibranium",
+    "particle": "create:block/axis_vibranium"
+  }
+}

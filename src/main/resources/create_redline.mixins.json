@@ -1,0 +1,25 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.createredline.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "KineticBlockEntityMixin",
+    "RotationPropagatorMixin",
+    "BeltBlockEntityMixin",
+    "BeltBlockMixin",
+    "BeltConnectorItemMixin",
+    "ShaftBlockMixin"
+  ],
+  "client": [
+    "client.RotatingInstanceMixin",
+    "client.KineticBlockEntityRendererMixin",
+    "client.BracketedKineticBlockEntityRendererMixin",
+    "client.GearboxRendererMixin",
+    "client.BeltVisualMixin",
+    "client.BeltRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

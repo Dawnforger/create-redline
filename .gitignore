@@ -1,0 +1,11 @@
+.gradle/
+build/
+out/
+run/
+run-gametest/
+runs/
+.idea/
+*.iml
+.vscode/
+bin/
+src/generated/resources/.cache/

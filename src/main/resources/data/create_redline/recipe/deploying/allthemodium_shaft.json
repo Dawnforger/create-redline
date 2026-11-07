@@ -1,0 +1,16 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "create:shaft"
+    },
+    {
+      "tag": "c:plates/allthemodium"
+    }
+  ],
+  "results": [
+    {
+      "id": "create_redline:allthemodium_shaft"
+    }
+  ]
+}

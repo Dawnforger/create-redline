@@ -1,0 +1,10 @@
+{
+  "parent": "create:block/gearbox/item",
+  "textures": {
+    "0": "create:block/andesite_casing_vibranium",
+    "1": "create:block/gearbox_vibranium",
+    "particle": "create:block/andesite_casing_vibranium",
+    "1_0": "create:block/axis_vibranium",
+    "1_1": "create:block/axis_top_vibranium"
+  }
+}

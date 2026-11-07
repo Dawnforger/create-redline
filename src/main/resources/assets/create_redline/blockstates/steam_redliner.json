@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=up": {
+      "model": "create_redline:block/steam_redliner/block"
+    },
+    "facing=down": {
+      "model": "create_redline:block/steam_redliner/block",
+      "x": 180
+    },
+    "facing=north": {
+      "model": "create_redline:block/steam_redliner/block",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "create_redline:block/steam_redliner/block",
+      "x": 90,
+      "y": 180
+    },
+    "facing=west": {
+      "model": "create_redline:block/steam_redliner/block",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east": {
+      "model": "create_redline:block/steam_redliner/block",
+      "x": 90,
+      "y": 90
+    }
+  }
+}
