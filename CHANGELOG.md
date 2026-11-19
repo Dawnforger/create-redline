@@ -1,3 +1,7 @@
+## 0.1.1
+- Works with Create 6.0.10 (previously needed 6.0.11 or newer). Servers on 6.0.10 refused to start with
+  Redline installed.
+
 ## 0.1.0
 First release.
 

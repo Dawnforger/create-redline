@@ -9,11 +9,11 @@ it only touches `gradle.properties`, the package name, and the asset/data namesp
 |---|---|---|
 | Minecraft | 1.21.1 | ATM10 |
 | Loader | NeoForge 21.1.x | ATM10 |
-| Create | 6.0.11 | Latest on 1.21.1 (verified compiling + GameTests passing) |
+| Create | 6.0.10+ | Oldest we support; ATM-style server packs ship 6.0.10 (tested on 6.0.10 and 6.0.11) |
 | Allthemodium | whatever ATM10 ships | Only used through `c:ingots/*` tags, so no compile dependency |
 
-> Pinned to the latest NeoForge 21.1 / Create 6.0.11 on maven. **Before release**, check the ATM10 manifest
-> (CurseForge → Files → server pack) and lower `create_version_range` if ATM ships an older Create 6.0.x.
+> Built against the oldest stack we support: NeoForge 21.1.250, Create 6.0.10, Ponder 1.0.82, Flywheel 1.0.6
+> (what the guild's AutoModpack server runs). Before raising any of these, check what the target packs ship.
 
 ---
 

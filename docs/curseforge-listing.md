@@ -44,7 +44,7 @@ Press ingots into **sheets**, then use a **Deployer** to apply sheets to shafts 
 Ponder scenes and Create-style tooltips are included. Hold W over the Steam Redliner.
 
 ### Requirements
-- Minecraft 1.21.1, NeoForge, Create 6.0.11+
+- Minecraft 1.21.1, NeoForge, Create 6.0.10+
 - Allthemodium (optional). Recipes use the `c:ingots/*` and `c:plates/*` tags, so other mods' metals and plates work too.
 
 ### Credits
