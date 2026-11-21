@@ -15,6 +15,7 @@ repositories {
     maven { url = 'https://maven.createmod.net' }          // Create, Ponder, Flywheel
     maven { url = 'https://mvn.devos.one/snapshots' }      // Registrate
     maven { url = 'https://maven.blamejared.com' }         // JEI
+    maven { url = 'https://maven.terraformersmc.com/releases' } // EMI
     maven {
         url = 'https://cursemaven.com'
         content { includeGroup 'curse.maven' }
@@ -73,6 +74,11 @@ dependencies {
     compileOnly "dev.engine-room.flywheel:flywheel-neoforge-api-${minecraft_version}:${flywheel_version}"
     runtimeOnly "dev.engine-room.flywheel:flywheel-neoforge-${minecraft_version}:${flywheel_version}"
     implementation "com.tterrag.registrate:Registrate:${registrate_version}"
+
+    // Optional recipe viewer plugins (compat.jei / compat.emi). Compile against the APIs only; their classes are
+    // loaded solely by the viewer's own plugin discovery, so neither mod is needed at runtime.
+    compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
+    compileOnly "dev.emi:emi-neoforge:${emi_version}:api"
 
     // Allthemodium in the dev client so the ingots/recipes exist while testing.
     // runtimeOnly "curse.maven:allthemodium-364466:${allthemodium_curse_file_id}"

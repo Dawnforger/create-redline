@@ -21,6 +21,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import com.createredline.registry.ModBlocks;
+import com.createredline.registry.ModComponents;
+import com.createredline.registry.ModCreativeTab;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.CreativeModeTab;
 import com.createredline.tier.GlowLevels;
 import com.createredline.tier.ITieredBelt;
 import com.createredline.tier.KineticTier;
@@ -127,6 +132,22 @@ public class RedlineGameTests {
             helper.assertTrue(helper.getLevel().getLightEmission(helper.absolutePos(smallCog(5))) == 15,
                     "expected light level 15");
         });
+    }
+
+    /** Recipe viewers index creative tab contents, so every item must be listed there (one Redliner per rotor). */
+    @GameTest(template = "empty")
+    public static void creativeTabListsEveryItem(GameTestHelper helper) {
+        CreativeModeTab tab = ModCreativeTab.MAIN.get();
+        tab.buildContents(new CreativeModeTab.ItemDisplayParameters(FeatureFlags.DEFAULT_FLAGS, false,
+                helper.getLevel().registryAccess()));
+        var shown = tab.getDisplayItems();
+        for (var entry : CreateRedline.REGISTRATE.getAll(Registries.ITEM))
+            helper.assertTrue(shown.stream().anyMatch(s -> s.is(entry.get())), "missing from tab: " + entry.getId());
+        for (KineticTier tier : KineticTier.values())
+            if (tier != KineticTier.BASE)
+                helper.assertTrue(shown.stream().anyMatch(s -> s.get(ModComponents.ROTOR_TIER.get()) == tier),
+                        "missing Redliner variant: " + tier);
+        helper.succeed();
     }
 
     @GameTest(template = "empty")

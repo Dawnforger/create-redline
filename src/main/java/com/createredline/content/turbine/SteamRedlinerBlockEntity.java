@@ -1,6 +1,8 @@
 package com.createredline.content.turbine;
 
 import com.createredline.config.RedlineConfig;
+import com.createredline.tier.TierGoggles;
+import com.createredline.tier.TierRules;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllSoundEvents;
 import com.simibubi.create.api.stress.BlockStressValues;
@@ -190,6 +192,7 @@ public class SteamRedlinerBlockEntity extends GeneratingKineticBlockEntity {
     @Override
     public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {
         super.addToGoggleTooltip(tooltip, isPlayerSneaking);
+        TierGoggles.addSpeed(tooltip, getSpeed(), TierRules.tierOf(getBlockState()));
         tooltip.add(Component.literal("    ")
                 .append(Component.translatable("create_redline.turbine.status." + status.name().toLowerCase(java.util.Locale.ROOT)))
                 .withStyle(status == Status.RUNNING ? ChatFormatting.GREEN : ChatFormatting.RED));

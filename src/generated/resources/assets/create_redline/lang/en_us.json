@@ -32,6 +32,8 @@
   "block.create_redline.vibranium_large_cogwheel.tooltip.summary": "Rated for up to _4,096 RPM_, glowing brighter past 256. Only links to shafts of _Vibranium_ tier or stronger.",
   "block.create_redline.vibranium_shaft": "Vibranium Shaft",
   "block.create_redline.vibranium_shaft.tooltip.summary": "Rated for up to _4,096 RPM_, glowing brighter past 256. Only links to shafts of _Vibranium_ tier or stronger. _Belts_ built between these shafts carry the same speeds.",
+  "create_redline.goggles.rated": " / %s max (%s)",
+  "create_redline.goggles.speed": "Rotation Speed:",
   "create_redline.ponder.steam_redliner.header": "Building a Steam Redliner",
   "create_redline.ponder.steam_redliner.text_1": "The Steam Redliner runs on a 3x3x3 Fluid Tank over 9 Blaze Burners",
   "create_redline.ponder.steam_redliner.text_2": "Every burner must be superheated with Blaze Cake, and the tank kept supplied with water",

@@ -42,6 +42,9 @@ public final class ModLang {
                 + "the _same stress capacity_: _Allthemodium_ 512 RPM, _Vibranium_ 2,048 RPM, _Unobtainium_ 8,192 RPM. "
                 + "The output shaft must be the rotor's tier or better.");
 
+        REGISTRATE.addRawLang("create_redline.goggles.speed", "Rotation Speed:");
+        REGISTRATE.addRawLang("create_redline.goggles.rated", " / %s max (%s)");
+
         REGISTRATE.addRawLang("create_redline.turbine.rotor", "Rotor: %s (%s RPM)");
         REGISTRATE.addRawLang("create_redline.turbine.one_per_boiler", "This boiler already has a Steam Redliner");
         for (KineticTier tier : KineticTier.values()) {

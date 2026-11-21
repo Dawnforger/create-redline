@@ -1,3 +1,11 @@
+## 0.1.2
+- Redline items now show up in JEI, EMI and other recipe viewers, including `@create_redline` searches.
+  The creative tab was registered but empty, and viewers build their item list from creative tabs.
+- The three Steam Redliner rotors (Allthemodium, Vibranium, Unobtainium) are separate entries in the creative
+  tab, JEI and EMI.
+- Engineer's Goggles show the speed of tiered shafts, cogwheels, gearboxes, belts and the Steam Redliner,
+  next to the RPM limit for that tier. The speed turns gold above 75% of the limit.
+
 ## 0.1.1
 - Works with Create 6.0.10 (previously needed 6.0.11 or newer). Servers on 6.0.10 refused to start with
   Redline installed.
