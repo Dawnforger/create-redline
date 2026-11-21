@@ -13,7 +13,9 @@ import com.simibubi.create.foundation.item.ItemDescription;
 import com.simibubi.create.foundation.item.KineticStats;
 import com.simibubi.create.foundation.item.TooltipModifier;
 import net.createmod.catnip.lang.FontHelper;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.CreativeModeTab;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -30,6 +32,9 @@ public class CreateRedline {
 
     // Registrate is how Create (and nearly every Create addon) registers blocks, BEs, renderers and Flywheel visuals.
     public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MOD_ID)
+            // Registrate's own default tab is the search tab. ModCreativeTab lists our items, and the search tab
+            // already collects everything from every tab, so adding them there again crashes the client.
+            .defaultCreativeTab((ResourceKey<CreativeModeTab>) null)
             // Create-style tooltips: shift for the .tooltip.summary/.condition/.behaviour lang entries.
             .setTooltipModifierFactory(item -> new ItemDescription.Modifier(item, FontHelper.Palette.STANDARD_CREATE)
                     .andThen(TooltipModifier.mapNull(KineticStats.create(item))));

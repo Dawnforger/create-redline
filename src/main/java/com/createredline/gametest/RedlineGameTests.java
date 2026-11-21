@@ -25,7 +25,7 @@ import com.createredline.registry.ModComponents;
 import com.createredline.registry.ModCreativeTab;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.flag.FeatureFlags;
-import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTabs;
 import com.createredline.tier.GlowLevels;
 import com.createredline.tier.ITieredBelt;
 import com.createredline.tier.KineticTier;
@@ -137,10 +137,10 @@ public class RedlineGameTests {
     /** Recipe viewers index creative tab contents, so every item must be listed there (one Redliner per rotor). */
     @GameTest(template = "empty")
     public static void creativeTabListsEveryItem(GameTestHelper helper) {
-        CreativeModeTab tab = ModCreativeTab.MAIN.get();
-        tab.buildContents(new CreativeModeTab.ItemDisplayParameters(FeatureFlags.DEFAULT_FLAGS, false,
-                helper.getLevel().registryAccess()));
-        var shown = tab.getDisplayItems();
+        // Build every tab, search included, as the client does on join: a Redline item added to the search tab
+        // twice (e.g. by Registrate's default tab on top of ours) throws here, as it crashed clients in 0.1.2.
+        CreativeModeTabs.tryRebuildTabContents(FeatureFlags.DEFAULT_FLAGS, true, helper.getLevel().registryAccess());
+        var shown = ModCreativeTab.MAIN.get().getDisplayItems();
         for (var entry : CreateRedline.REGISTRATE.getAll(Registries.ITEM))
             helper.assertTrue(shown.stream().anyMatch(s -> s.is(entry.get())), "missing from tab: " + entry.getId());
         for (KineticTier tier : KineticTier.values())

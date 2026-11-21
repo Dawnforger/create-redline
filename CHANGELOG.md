@@ -1,3 +1,7 @@
+## 0.1.3
+- Fixes clients crashing on start or when joining with 0.1.2 installed ("Itemstack ... already exists in the
+  tab's list"). Redline items were being added to the creative search tab twice.
+
 ## 0.1.2
 - Redline items now show up in JEI, EMI and other recipe viewers, including `@create_redline` searches.
   The creative tab was registered but empty, and viewers build their item list from creative tabs.
