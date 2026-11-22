@@ -1,3 +1,8 @@
+## 0.1.4
+- Speedometers and stressometers now work with tiered parts. They attach to tiered cogs, shafts and gearboxes
+  and no longer break past 256 RPM. The speedometer dial still tops out at 256 RPM (Create's scale); goggles
+  show the exact speed.
+
 ## 0.1.3
 - Fixes clients crashing on start or when joining with 0.1.2 installed ("Itemstack ... already exists in the
   tab's list"). Redline items were being added to the creative search tab twice.
