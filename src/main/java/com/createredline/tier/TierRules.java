@@ -3,6 +3,7 @@ package com.createredline.tier;
 import com.createredline.config.RedlineConfig;
 import com.simibubi.create.api.stress.BlockStressValues;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
+import com.simibubi.create.content.kinetics.gauge.GaugeBlock;
 import com.simibubi.create.content.kinetics.simpleRelays.ICogWheel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -13,6 +14,8 @@ import net.minecraft.world.level.block.state.BlockState;
  * The two rules of the mod, in one place. They only govern *transmission* parts (shafts, cogs, gearboxes, belts,
  * clutches...): blocks with neither a stress impact nor a stress capacity. Machines and generators (presses,
  * millstones, fans, steam engines...) run at whatever speed the network gives them and pay stress for it.
+ * Gauges (speedometer, stressometer) count as machines too: they only measure, so they never break or refuse
+ * to attach.
  *  1. Speed cap  - a transmission part breaks if its speed exceeds its own tier's cap (vanilla parts keep
  *                  Create's cap).
  *  2. Attachment - a shaft/gearbox connection along an axis only links if the shaft side is >= the tier of the
@@ -41,10 +44,10 @@ public final class TierRules {
         return tierOf(be).maxRpm();
     }
 
-    /** Consumers and generators, as opposed to pure transmission. Our own blocks are never "machines". */
+    /** Consumers, generators and gauges, as opposed to pure transmission. Our own blocks are never "machines". */
     public static boolean isMachine(Block block) {
-        return !(block instanceof ITieredKinetic)
-                && (BlockStressValues.getImpact(block) > 0 || BlockStressValues.getCapacity(block) > 0);
+        return !(block instanceof ITieredKinetic) && (block instanceof GaugeBlock
+                || BlockStressValues.getImpact(block) > 0 || BlockStressValues.getCapacity(block) > 0);
     }
 
     public static boolean canLink(KineticBlockEntity from, KineticBlockEntity to) {

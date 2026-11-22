@@ -39,7 +39,10 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
+import com.simibubi.create.content.kinetics.base.DirectionalAxisKineticBlock;
 import com.simibubi.create.content.kinetics.base.HorizontalKineticBlock;
+import com.simibubi.create.content.kinetics.gauge.GaugeBlock;
+import com.simibubi.create.content.kinetics.gauge.StressGaugeBlockEntity;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.content.kinetics.motor.CreativeMotorBlock;
 import com.simibubi.create.content.kinetics.motor.CreativeMotorBlockEntity;
@@ -172,6 +175,32 @@ public class RedlineGameTests {
         helper.runAfterDelay(20, () -> {
             helper.assertBlockPresent(AllBlocks.MECHANICAL_PRESS.get(), press);
             helper.assertTrue(speedAt(helper, press) == 1024, "press should run at 1024 rpm, got " + speedAt(helper, press));
+            helper.succeed();
+        });
+    }
+
+    /** Gauge with its shaft along X. */
+    private static void gaugeX(GameTestHelper helper, BlockPos pos, Block gauge) {
+        helper.setBlock(pos, gauge.defaultBlockState().setValue(GaugeBlock.FACING, Direction.UP)
+                .setValue(DirectionalAxisKineticBlock.AXIS_ALONG_FIRST_COORDINATE, true));
+    }
+
+    @GameTest(template = "empty")
+    public static void gaugesReadTieredParts(GameTestHelper helper) {
+        // 1024 rpm Allthemodium train. A speedometer straight on the tiered cog, then a stressometer on a tiered
+        // shaft further along: both must attach, survive the speed and read the network.
+        buildTrain(helper, KineticTier.ALLTHEMODIUM, 2);
+        BlockPos speedo = smallCog(1).east(), shaft = speedo.east(), stresso = shaft.east();
+        gaugeX(helper, speedo, AllBlocks.SPEEDOMETER.get());
+        axisX(helper, shaft, ModBlocks.SHAFTS.get(KineticTier.ALLTHEMODIUM).get());
+        gaugeX(helper, stresso, AllBlocks.STRESSOMETER.get());
+        helper.runAfterDelay(20, () -> {
+            helper.assertBlockPresent(AllBlocks.SPEEDOMETER.get(), speedo);
+            helper.assertBlockPresent(AllBlocks.STRESSOMETER.get(), stresso);
+            helper.assertTrue(speedAt(helper, speedo) == 1024, "speedometer should read 1024, got " + speedAt(helper, speedo));
+            var gauge = (StressGaugeBlockEntity) helper.getBlockEntity(stresso);
+            helper.assertTrue(speedAt(helper, stresso) == 1024, "stressometer should spin at 1024, got " + speedAt(helper, stresso));
+            helper.assertTrue(gauge.getNetworkCapacity() > 0, "stressometer should see the motor's capacity");
             helper.succeed();
         });
     }
